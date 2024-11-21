@@ -1,0 +1,193 @@
+/* Common styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Light mode styles */
+body.light-mode {
+    background-color: #f4f4f9;
+}
+
+body.light-mode .chat-container {
+    background-color: #fff;
+    color: #000;
+}
+
+body.light-mode .chat-box {
+    background-color: #fff;
+}
+
+body.light-mode .message.user {
+    background-color: #007bff;
+    color: white;
+}
+
+body.light-mode .message.bot {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212;
+}
+
+body.dark-mode .chat-container {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+body.dark-mode .chat-box {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .input-container {
+    background-color: #333;
+}
+
+body.dark-mode .message.user {
+    background-color: #00ff3300;
+    color: white;
+}
+
+body.dark-mode .message.bot {
+    background-color: #444;
+    color: white;
+}
+
+body.dark-mode .input-container input {
+    background-color: #555;
+    color: white;
+}
+
+body.dark-mode .input-container button {
+    background-color: #007bff;
+    color: white;
+}
+
+.chat-container {
+    width: 1000px;
+    height: 600px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.input-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3cff00;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.input-container button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.user {
+    text-align: right;
+    background-color: #f200ff84;
+    color: white;
+}
+
+.bot {
+    text-align: left;
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.code-block {
+    background-color: #272822;
+    color: #f8f8f2;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Consolas';
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.copy-button {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.chat-image {
+    max-width: 500px; /* Adjust this to fit within your chat window */
+    max-height: 200px; /* Adjust the height as needed */
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 10px 0; /* Add some margin for spacing */
+}
+.chat-image1 {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+#drop-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+}
+
+#drop-area:focus {
+    outline: none;
+}
+
+#image-preview {
+    width: 100px; /* Fixed width for stamp size */
+    height: 100px; /* Fixed height for stamp size */
+    object-fit: cover; /* Ensures the image fits within the dimensions */
+    display: none;
+    margin-top: 10px;
+}
