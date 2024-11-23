@@ -9,14 +9,48 @@ function handlePaste(event) {
         const item = items[index];
         if (item.kind === 'file') {
             const blob = item.getAsFile();
-            resizeAndUploadImage(blob);
+            //convertToJPG(blob).then((jpgBlob) => {
+            resizeAndUploadImage(blob);            
+            displayImage(blob, 'user'); 
             event.preventDefault();
-            displayImage(blob, 'user');
             break;
         }
     }
 }
 
+// Convert a Blob to JPG
+function convertToJPG(blob) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = new Image();
+            img.onload = function () {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                // Set canvas dimensions to match the image
+                canvas.width = img.width;
+                canvas.height = img.height;
+
+                // Draw the image onto the canvas
+                ctx.drawImage(img, 0, 0);
+
+                // Convert canvas to JPG blob
+                canvas.toBlob(
+                    (jpgBlob) => {
+                        resolve(jpgBlob);
+                    },
+                    'image/jpeg', // Specify JPEG format
+                    0.9 // Quality (0 to 1, optional)
+                );
+            };
+            img.onerror = reject;
+            img.src = e.target.result; // Set the image source
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob); // Read the blob as a Data URL
+    });
+}
 function resizeAndUploadImage(blob) {
     const reader = new FileReader();
     reader.onload = function(event) {
@@ -28,24 +62,24 @@ function resizeAndUploadImage(blob) {
             const maxWidth = 100;
             const maxHeight = 100;
             
-            let width = img.width;
-            let height = img.height;
+            // let width = img.width;
+            // let height = img.height;
 
-            if (width > height) {
-                if (width > maxWidth) {
-                    height *= maxWidth / width;
-                    width = maxWidth;
-                }
-            } else {
-                if (height > maxHeight) {
-                    width *= maxHeight / height;
-                    height = maxHeight;
-                }
-            }
+            // if (width > height) {
+            //     if (width > maxWidth) {
+            //         height *= maxWidth / width;
+            //         width = maxWidth;
+            //     }
+            // } else {
+            //     if (height > maxHeight) {
+            //         width *= maxHeight / height;
+            //         height = maxHeight;
+            //     }
+            // }
 
-            canvas.width = width;
-            canvas.height = height;
-            ctx.drawImage(img, 0, 0, width, height);
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0, img.width, img.height);
             
             const resizedImageData = canvas.toDataURL('image/jpeg');
             
